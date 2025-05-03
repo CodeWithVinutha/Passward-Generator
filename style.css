@@ -13,6 +13,7 @@ body{
     align-items: center;
     background: linear-gradient(to right bottom, #ffa585, #45c5d8);
     color: #fff;
+    font-weight: 600;
 }
 
 .container{
@@ -29,7 +30,19 @@ body{
     font-size: 1.4rem;
     margin-block: 8px;
 }
+.inputBox{
+    Position: relative;
+}
 
+.inputBox span{
+    Position: absolute;
+    top: 16px;
+    right: 6px;
+    color: #000;
+    font-size: 28px;
+    cursor: Pointer;
+    z-index: 2; 
+}
 .PassBox{
     background-color: #fff;
     border: none;
@@ -39,6 +52,7 @@ body{
     border-radius: 4px;
     font-size: 20px;
     margin-block: 8px;
+    text-overflow: ellipsis;
 }
 
 .row{
