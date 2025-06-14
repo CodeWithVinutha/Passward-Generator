@@ -10,54 +10,49 @@ let copyIcon = document.getElementById("copyIcon");
 
 
 // Showing input slider value
-sliderValue.textContent = inputSlider.ariaValueMax;
+sliderValue.textContent = inputSlider.value;
 inputSlider.addEventListener('input', ()=>{
-    sliderValue.textContent = inputSlider.ariaValueMax;
+    sliderValue.textContent = inputSlider.value;
 });
 
 genBtn.addEventListener('click', ()=>{
-    PassBox.value = generatePassward();
+    PassBox.value = generatePassword();
 })
 
-let lowerchars = "abcdefghijklmnopqrstuvwxyz";
+let lowerChars = "abcdefghijklmnopqrstuvwxyz";
 let upperChars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 let allNumbers = "0123456789";
 let allSymbols = "~!@#$%^&*";
 
-// Function to generate Passward
-function generatePassward(){
-    let genPassward = "";
+// Function to generate Password
+function generatePassword(){
+    let genPassword = "";
     let allChars = "";
 
     allChars += lowercase.checked ? lowerChars : "";
     allChars += uppercase.checked ? upperChars : "";
     allChars += numbers.checked ? allNumbers : "";
-    allChars += symbols.checked ? allsymbols : "";
-
+    allChars += symbols.checked ? allSymbols : "";
 
     if(allChars == "" || allChars.length == 0){
-        return genPassward;
+        return genPassword;
     }
 
-
-    let i = 1;
-    while(i<=inputSlider.value){
-        genPassward = allChars.charAt(Math.floor(Math.random() * allChars.length));
-        i++;
+    for(let i = 0; i < inputSlider.value; i++){
+        genPassword += allChars.charAt(Math.floor(Math.random() * allChars.length));
     }
-    
-    return genPassward;
+    return genPassword;
 }
 
 copyIcon.addEventListener('click', ()=>{
-    if(PassBox.value != "" || PassBox.value.length >=1){
-    navigator.clipboard.writeText(PassBox.value);
-    copyIcon.innerText = "check";
-    copyIcon.title = "Passward Copied";
+    if(PassBox.value != "" && PassBox.value.length >=1){
+        navigator.clipboard.writeText(PassBox.value);
+        copyIcon.innerText = "check";
+        copyIcon.title = "Password Copied";
 
-    setTimeout(()=>{
-        copyIcon.innerHTML = "content_copy";
-        copyIcon.title = "";
-    }, 3000)
-}
+        setTimeout(()=>{
+            copyIcon.innerHTML = "content_copy";
+            copyIcon.title = "";
+        }, 3000)
+    }
 });
